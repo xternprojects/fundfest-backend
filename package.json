@@ -14,5 +14,8 @@
     "mongoose": "^4.0.6",
     "morgan": "^1.6.0",
     "parse": "^1.4.2"
+  },
+  "scripts": {
+    "start": "node server.js"
   }
 }
