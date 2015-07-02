@@ -32,6 +32,7 @@ app.get('/', function(req, res) {
 });
 
 app.post('/new_project', Project.newProject);
+app.post('/get_all_projects', Project.getAllProjects);
 
 app.listen(port, function() {
 	console.log('Server running at port: ' + port);

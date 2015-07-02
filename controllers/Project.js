@@ -4,7 +4,6 @@ var Project 			= require('./Project');
 module.exports.newProject = function(req, res) {
 	var ProjectObject = Parse.Object.extend("Project");
 	var newProject = new ProjectObject();
-	console.log(req.body);
 	newProject.save({
 		projectName: 				req.body.projectName,
 		projectDescription: 		req.body.projectDescription || null,
@@ -21,6 +20,18 @@ module.exports.newProject = function(req, res) {
 		error: function(proj, err) {
 			console.log(err);
 			res.sendStatus(500);
+		}
+	});
+}
+
+module.exports.getAllProjects = function(req, res) {
+	var query = new Parse.Query('Project');
+	query.find({
+		success: function(result) {
+			res.send(JSON.stringify(result));
+		}, error: function(err) {
+			console.log(err);
+			res.send(500);
 		}
 	});
 }
