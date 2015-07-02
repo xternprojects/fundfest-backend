@@ -27,3 +27,4 @@
 <b>How to commit:</b> ``(Issue Number)(message)+``
 
 Also please learn git, and feel free to commit as many times as you want. It will save your hours of getting to last working state of a broken feature. 
+### [Documentation Wiki](https://github.com/xternprojects/fundfest-documentation/wiki)
