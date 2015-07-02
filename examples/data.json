@@ -1,0 +1,22 @@
+{
+	"projectName": 			"Test Project",
+	"projectDescription": 	"Test Description",
+	"owners": 				[{"name":"deep randhawa"}, {"name":"michael goldman"}],
+	"funded": 				1,
+	"pledged": 				100,
+	"backers":				[{
+								"userID": 			"Ben Wenke",
+								"amountPledged":	2
+							}, {
+								"userID":			"Anthony",
+								"amountPledged":	2
+							}, {
+								"userID": 			"Sally Reasoner",
+								"amountPledged":	20
+							}, {
+								"userID":			"Ryan Green",
+								"amountPledged":	0
+							}],
+	"endDate": 				"Fri Jul 08 2015 00:00:00 GMT-0700 (PST)",
+	"estimatedDelivery": 	"Fri Jul 08 2017 00:00:00 GMT-0700 (PST)"	
+}

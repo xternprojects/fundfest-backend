@@ -1,0 +1,7 @@
+{
+	"userID": 				"<unique ID, decided by the server>",
+	"userName": 			"<as pulled off of provider>",
+	"provider": 			"<ENUM(facebook, google, twitter, etc)>",
+	"providerID": 			"<uniqueID provided by the provider>",
+	"projectsBacked": 		[ { projectID: "projectID", "amountPledged": "<amountPledged>" } ]
+}

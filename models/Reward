@@ -1,0 +1,7 @@
+{
+	"projectID": "<unique ID of the project, for this reward>",
+	"rewards": {
+		"rewardThreshold": 		"rewardDescription",
+		"rewardThreshold2": 	"rewardDescription"
+	}
+}

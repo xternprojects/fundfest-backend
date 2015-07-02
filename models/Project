@@ -1,0 +1,11 @@
+{
+	"projectID": 			"<will be decided by the server>"
+	"projectName": 			"<projectName>",
+	"projectDescription": 	"<A description of the project>",
+	"owners": 				"<Array of owners of the project>",
+	"funded": 				"<total current funding>",
+	"pledged": 				"<total pledged funding>",
+	"backers": 				"<array of dictionaries of the form -> { "userID": "<userID>", "amountPledged": <amount pledged as integer> } >",
+	"endDate": 				"<last date of pledging money to this project>",
+	"estimatedDelivery": 	"<delivery date of the project, if funded in whole>"	
+}
