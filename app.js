@@ -27,12 +27,22 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: 'false'}));
 
 /// --- ROUTES --- ///
+
+
+// -- GET REQUESTS-- //
 app.get('/', function(req, res) {
 	res.send('Welcome to fundfest server side.')
 });
 
+
+// -- POST REQUESTS -- //
 app.post('/new_project', Project.newProject);
 app.post('/get_all_projects', Project.getAllProjects);
+app.post('/add_owner', Project.addOwner);
+app.post('/change_project_name', Project.changeProjectName);
+app.post('/change_project_desc', Project.changeProjectDesc);
+app.post('/add_funding', Project.addFunding);
+app.post('/add_backer', Project.addBacker);
 
 app.listen(port, function() {
 	console.log('Server running at port: ' + port);

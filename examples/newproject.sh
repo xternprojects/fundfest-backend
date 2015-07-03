@@ -4,7 +4,7 @@
 
 curl -X POST \
  -H "Content-Type: application/json" \
- --data @data.json \
- http://localhost:5000/new_project
+ --data '{"amountPledged": 5, "userID": "Deep Randhawa", "projectID": "mvEBFIva0E"}' \
+ http://localhost:5000/get_all_projects
 
 echo
