@@ -2,7 +2,7 @@
 ### https://fundfest-backend.herokuapp.com/
 1. *GET* **/**
     <br> This is the home page of the application. We need to decide what page to show when user hits this.
-2. *POST*  **/get_all_projects**
+2. *GET*  **/get_all_projects**
     <br>Will get all the projects in the database
     <br>*ARGUMENTS*: None
 3. *POST* **/new_project**

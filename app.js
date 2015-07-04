@@ -33,11 +33,10 @@ app.use(bodyParser.urlencoded({extended: 'false'}));
 app.get('/', function(req, res) {
 	res.send('Welcome to fundfest server side.')
 });
-
+app.get('/get_all_projects', Project.getAllProjects);
 
 // -- POST REQUESTS -- //
 app.post('/new_project', Project.newProject);
-app.post('/get_all_projects', Project.getAllProjects);
 app.post('/add_owner', Project.addOwner);
 app.post('/change_project_name', Project.changeProjectName);
 app.post('/change_project_desc', Project.changeProjectDesc);
