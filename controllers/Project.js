@@ -36,90 +36,18 @@ module.exports.getAllProjects = function(req, res) {
 	});
 }
 
-module.exports.addOwner = function(req, res) {
+module.exports.updateProject = function(req, res) {
 	query.get(req.body.projectID, {
 		success: function(project) {
-			project.add('owners', { 'name': req.body.ownerName });
-			project.save(null, {
-				success: function(project) {
-					res.sendStatus(200);
-				}, error: function(object, err) {
-					console.log(err);
-					res.sendStatus(500);
-				}
-			});
-		}, error: function(object, err) {
-			console.log(err);
-			res.sendStatus(500);
-		}
-	});
-}
+			var newProjectName = req.body.projectName || project.get('projectName');
+			var newProjectDesc = req.body.projectDescription || project.get('projectDescription');
+			var newOwners = req.body.owners || project.get('owners');
+			var pledged = req.body.pledged || project.get('pledged');
 
-module.exports.changeProjectName = function(req, res) {
-	query.get(req.body.projectID, {
-		success: function(project) {
-			project.set('projectName', req.body.newName);
-			project.save(null, {
-				success: function(project) {
-					res.sendStatus(200);
-				}, error: function(object, err) {
-					console.log(err);
-					res.sendStatus(500);
-				}
-			});
-		}, error: function(object, err) {
-			console.log(err);
-			res.sendStatus(500);
-		}
-	});
-}
-
-module.exports.changeProjectDesc = function(req, res) {
-	query.get(req.body.projectID, {
-		success: function(project) {
-			project.set('projectDescription', req.body.newDescription);
-			project.save(null, {
-				success: function(project) {
-					res.sendStatus(200);
-				}, error: function(object, err) {
-					console.log(err);
-					res.sendStatus(500);
-				}
-			});
-		}, error: function(object, err) {
-			console.log(err);
-			res.sendStatus(500);
-		}
-	});
-}
-
-module.exports.addFunding = function(req, res) {
-	query.get(req.body.projectID, {
-		success: function(project) {
-			var newFunding = project.get('funded') + req.body.addFunds;
-			project.set('funded', newFunding);
-			project.save(null, {
-				success: function(project) {
-					res.sendStatus(200);
-				}, error: function(object, err) {
-					console.log(err);
-					res.sendStatus(500);
-				}
-			});
-		}, error: function(object, err) {
-			console.log(err);
-			res.sendStatus(500);
-		}
-	});
-}
-
-module.exports.addBacker = function(req, res) {
-	query.get(req.body.projectID, {
-		success: function(project) {
-			project.add('backers', {
-				'amountPledged': req.body.amountPledged, 
-				'userID': req.body.userID
-			});
+			project.set('projectName', newProjectName);
+			project.set('projectDescription', newProjectDesc);
+			project.set('owners', newOwners);
+			project.set('pledged', pledged);
 			project.save(null, {
 				success: function(project) {
 					res.sendStatus(200);
