@@ -1,17 +1,17 @@
-var express 			= require('express')
-var http				= require('http')
-var mongoose			= require('mongoose')
+var express 			= require('express');
+var http				= require('http');
 var bodyParser          = require('body-parser');
 var session             = require('express-session');
 var logger              = require('morgan');
 var cookieParser        = require('cookie-parser');
 var methodOverride      = require('method-override');
 
+var projectRouter 		= require('./routers/projectRouter');
+
 var app					= express()
-var port				= process.env.PORT || 5000;
 var Parse 				= require('parse').Parse;
 
-Parse.initialize("Y649KKe49bjmyS0ggTp4LGNAAOtMk2O0r8VqCUHj", "Iy87FXKYYJezTT8N0kt7Q8CJchwbAgU290mYujr9");
+Parse.initialize( process.env.APP_ID, process.env.JS_KEY );
 
 module.exports = {
 	Parse : Parse
@@ -32,6 +32,8 @@ app.use(bodyParser.urlencoded({extended: 'false'}));
 app.get('/', function(req, res) {
 	res.send('Welcome to fundfest server side.')
 });
+
+app.use( '/projects', projectRouter );
 
 // GETS ALL THE PROJECTS //
 app.get('/projects', Project.getAllProjects);
