@@ -50,6 +50,21 @@ router.post( '/', jsonParser, function( req, res ){
 
 router.put( '/:id', jsonParser, function( req, res ){
 	var id = req.params.id;
+	var update = req.body;
+
+	var ProjectObject = Parse.Object.extend("Project");
+	var project = new ProjectObject();
+
+	project.id = id;
+
+	project.save( update ).then(
+		function( proj ) {
+			res.send( proj );
+		},
+		function( err ) {
+			res.status( 500 ).send( err );
+		}
+	);
 });
 
 module.exports = router;
