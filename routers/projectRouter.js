@@ -10,12 +10,18 @@ router.get( '/:id?', function( req, res ){
 	var query = new Parse.Query('Project');
 	var ProjectObject = Parse.Object.extend("Project");
 
+	var pageSize = req.query.pageSize > 0 ? req.query.pageSize : 50;
+	var pageNumber = req.query.pageNumber > 0 ? req.query.pageNumber : 1;
+
 	var id = req.params.id;
 
 	if( id ){
 		query.equalTo( "objectId", id );
 	}
 	
+	query.limit( pageSize );
+	query.skip( pageSize * pageNumber );
+
 	query.find().then(
 		function( result ) {
 			res.send( result );
