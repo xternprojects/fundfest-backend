@@ -1,30 +1,55 @@
 var express = require( 'express' );
-// var Parse	= require('../app').Parse;
-// var Project	= Parse.Object.extend("Project");
-// var query 	= new Parse.Query('Project');
+var bodyParser = require( 'body-parser' );
 
 var router = express.Router();
 
-router.get( '/', function( req, res ){
+var jsonParser = bodyParser.json();
 
-	// query.find().then(
-	// 	function(result) {
-	// 		res.send(JSON.stringify(result));
-	// 	}, 
-	// 	function(err) {
-	// 		console.log(err);
-	// 		res.sendStatus(500);
-	// 	}
-	// );
+router.get( '/:id?', function( req, res ){
 
-});
+	var query = new Parse.Query('Project');
+	var ProjectObject = Parse.Object.extend("Project");
 
-router.post( '/', function( req, res ){
+	var id = req.params.id;
 
-});
-
-router.put( '/:id', function( req, res ){
+	if( id ){
+		query.equalTo( "objectId", id );
+	}
 	
+	query.find().then(
+		function( result ) {
+			res.send( result );
+		}, 
+		function( err ) {
+			res.status( 500 ).send( err );
+		}
+	);
+
+});
+
+router.post( '/', jsonParser, function( req, res ){
+
+	var ProjectObject = Parse.Object.extend("Project");
+
+	var newProject = new ProjectObject();
+	var project = req.body;
+	console.log( project );
+	project.endDate = new Date( project.endDate );
+	project.estimatedDelivery = new Date( project.estimatedDelivery );
+
+	newProject.save( project ).then(
+		function( proj ) {
+			res.send( proj );
+		},
+		function( err ) {
+			res.status( 500 ).send( err );
+		}
+	);
+
+});
+
+router.put( '/:id', jsonParser, function( req, res ){
+	var id = req.params.id;
 });
 
 module.exports = router;

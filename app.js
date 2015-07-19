@@ -7,20 +7,17 @@ var cookieParser        = require('cookie-parser');
 var methodOverride      = require('method-override');
 var dotenv 				= require('dotenv');
 
-var projectRouter 		= require('./routers/projectRouter');
-
-var app					= express()
-var Parse 				= require('parse').Parse;
+var app					= express();
+global.Parse 			= require('parse').Parse;
 
 dotenv.load();
 
-Parse.initialize( process.env.APP_ID, process.env.JS_KEY );
+global.Parse.initialize( process.env.APP_ID, process.env.JS_KEY );
 
-module.exports = {
-	Parse : Parse
-}
+var server = http.createServer( app );
 
-var Project			= require('./controllers/Project');
+// var Project			= require('./controllers/Project');
+var projectRouter 		= require('./routers/projectRouter');
 
 /// --- SETTING UP APP --- ///
 app.set('port', process.env.PORT);
@@ -38,6 +35,6 @@ app.get('/', function(req, res) {
 
 app.use( '/projects', projectRouter );
 
-app.listen(process.env.PORT, function() {
+server.listen(process.env.PORT, function() {
 	console.log('Server running at port: ' + process.env.PORT);
 });
