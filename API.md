@@ -1,33 +1,165 @@
 ## Routes
 ### https://fundfest-backend.herokuapp.com/
-1. *GET* **/**
-    <br> This is the home page of the application. We need to decide what page to show when user hits this.
-2. *GET*  **/projects**
-    <br>Will get all the projects in the database
-    <br>*ARGUMENTS*: None
-3. *POST* **/project**
-    <br>Will put a new Project Object in the database
-    <br>*ARGUMENTS:*<br>
-        1. "projectID": 			"will be decided by the server"<br>
-        2. "projectName": 			"projectName",<br>
-        3. "projectDescription": 	"A description of the project",<br>
-        4. "owners": 				"Array of owners of the project",<br>
-        5. "funded": 				"total current funding",<br>
-        6. "pledged": 				"total pledged funding in $",<br>
-        7. "backers": 				"array of dictionaries of the form -> { "userID": "<userID>", "amountPledged": <amount pledged as integer } >",<br>
-        8. "endDate": 				"last date of pledging money to this project",<br>
-        9. "estimatedDelivery": 	"delivery date of the project, if funded in whole"<br>
-4. *PUT* **/project**
-    <br>Will update an existing project. Only updates the following fields:
-    <br>*ARGUMENTS*:<br>
-        1. "projectID":             "ID of the existing project in DB"<br>
-        2. "projectName":           "updated Name of the project"<br>
-        3. "projectDescription":    "new project description"<br>
-        4. "owners":                "updated array of new set of owners. send all the owners again, not just the new one"<br>
-        5. "pledged":               "new pledged amount for this project"<br>
-        NOTE: If you do not send any of these arguments, its value will not change in the database
-<br><br>
+
+### GET /projects #
+
+You can use pagination with the following parameters: `pageSize` and `pageNumber`. For example, `/issues?pageSize=5&pageNumber=2` will retrieve projects 6 through 10. Can also get a particular
+project with GET `/projects/[objectId]`.
+
+<i>Example Response:</i>
+
+    [
+        {
+            "backers": [{
+                "amountPledged": 401,
+                "name": "Donna Willis"
+            }, {
+                "amountPledged": 625,
+                "name": "Brian Lema"
+            }, {
+                "amountPledged": 45,
+                "name": "Soraya Groves"
+            }, {
+                "amountPledged": 177,
+                "name": "Joshua Romo"
+            }],
+            "category": "Product and Service Development Projects",
+            "endDate": {
+                "__type": "Date",
+                "iso": "2016-07-08T23:12:00.000Z"
+            },
+            "estimatedDelivery": {
+                "__type": "Date",
+                "iso": "2018-05-11T13:20:00.000Z"
+            },
+            "funded": 2398,
+            "owners": ["James Wolford", "Another person"],
+            "pledged": 7085,
+            "projectDescription": "Dummy Description #1",
+            "projectName": "Dummy Project #1",
+            "objectId": "4fSAnIjIrG",
+            "createdAt": "2015-07-12T20:49:19.456Z",
+            "updatedAt": "2015-07-12T20:49:19.456Z"
+        },
+        ...
+    ]
+
+### POST /projects
+
+<i>JSON Payload:</i>
+
+    {
+        "backers": [{
+            "amountPledged": NUMBER,
+            "name": STRING
+        }, ...],
+        "category": STRING,
+        "endDate": STRING,
+        "estimatedDelivery": STRING,
+        "funded": NUMBER,
+        "owners": STRING ARRAY,
+        "pledged": NUMBER,
+        "projectDescription": STRING,
+        "projectName": STRING,
+    }
+
+<i>Example Response:</i>
+
+If successfully created or updated: <b>200 OK</b>
+    
+Returns successfully created project:
+
+    {
+        "backers": [{
+            "amountPledged": 401,
+            "name": "Donna Willis"
+        }, {
+            "amountPledged": 625,
+            "name": "Brian Lema"
+        }, {
+            "amountPledged": 45,
+            "name": "Soraya Groves"
+        }, {
+            "amountPledged": 177,
+            "name": "Joshua Romo"
+        }],
+        "category": "Product and Service Development Projects",
+        "endDate": {
+            "__type": "Date",
+            "iso": "2016-07-08T23:12:00.000Z"
+        },
+        "estimatedDelivery": {
+            "__type": "Date",
+            "iso": "2018-05-11T13:20:00.000Z"
+        },
+        "funded": 2398,
+        "owners": ["James Wolford", "Another person"],
+        "pledged": 7085,
+        "projectDescription": "Dummy Description #1",
+        "projectName": "Dummy Project #1",
+        "objectId": "4fSAnIjIrG",
+        "createdAt": "2015-07-12T20:49:19.456Z",
+        "updatedAt": "2015-07-12T20:49:19.456Z"
+    }
+
+If failed: <b>Status: 500</b>
+
+    {
+        "error": STRING
+    }
 
 
-**NOTE:**
-*all arguments must be sent as a JSON object in body of the request*
+### PUT /projects/[id]
+
+<i>JSON Payload:</i>
+
+    {
+        "key_to_change": "new_value",
+        "another_key_to_change": "new_value",
+        ...
+    }
+
+<i>Example Response:</i>
+
+If successfully created or updated: <b>200 OK</b>
+    
+Returns successfully updated project:
+
+    {
+        "backers": [{
+            "amountPledged": 401,
+            "name": "Donna Willis"
+        }, {
+            "amountPledged": 625,
+            "name": "Brian Lema"
+        }, {
+            "amountPledged": 45,
+            "name": "Soraya Groves"
+        }, {
+            "amountPledged": 177,
+            "name": "Joshua Romo"
+        }],
+        "category": "Product and Service Development Projects",
+        "endDate": {
+            "__type": "Date",
+            "iso": "2016-07-08T23:12:00.000Z"
+        },
+        "estimatedDelivery": {
+            "__type": "Date",
+            "iso": "2018-05-11T13:20:00.000Z"
+        },
+        "funded": 2398,
+        "owners": ["James Wolford", "Another person"],
+        "pledged": 7085,
+        "projectDescription": "Dummy Description #1",
+        "projectName": "Dummy Project #1",
+        "objectId": "4fSAnIjIrG",
+        "createdAt": "2015-07-12T20:49:19.456Z",
+        "updatedAt": "2015-07-12T20:49:19.456Z"
+    }
+
+If failed: <b>Status: 500</b>
+
+    {
+        "error": STRING
+    }
