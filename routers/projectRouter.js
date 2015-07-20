@@ -11,7 +11,7 @@ router.get( '/:id?', function( req, res ){
 	var ProjectObject = Parse.Object.extend("Project");
 
 	var pageSize = req.query.pageSize > 0 ? req.query.pageSize : 50;
-	var pageNumber = req.query.pageNumber > 0 ? req.query.pageNumber : 1;
+	var skipNumber = req.query.pageNumber > 0 ? req.query.pageNumber-1 : 0;
 
 	var id = req.params.id;
 
@@ -20,7 +20,7 @@ router.get( '/:id?', function( req, res ){
 	}
 	
 	query.limit( pageSize );
-	query.skip( pageSize * pageNumber );
+	query.skip( pageSize * skipNumber );
 
 	query.find().then(
 		function( result ) {
