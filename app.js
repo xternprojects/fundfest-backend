@@ -1,10 +1,8 @@
 var express 			= require('express');
 var http				= require('http');
 var bodyParser          = require('body-parser');
-var session             = require('express-session');
 var logger              = require('morgan');
 var cookieParser        = require('cookie-parser');
-var methodOverride      = require('method-override');
 var dotenv 				= require('dotenv');
 
 var app					= express();
@@ -12,7 +10,7 @@ global.Parse 			= require('parse').Parse;
 
 dotenv.load();
 
-global.Parse.initialize( process.env.APP_ID, process.env.JS_KEY );
+Parse.initialize( process.env.APP_ID, process.env.JS_KEY );
 
 var server = http.createServer( app );
 
@@ -25,8 +23,6 @@ app.use(cookieParser());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: 'false'}));
-
-/// --- ROUTES --- ///
 
 // -- GET REQUESTS-- //
 app.get('/', function(req, res) {
