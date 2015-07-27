@@ -10,36 +10,17 @@ project with GET `/projects/[objectId]`.
 
     [
         {
-            "backers": [{
-                "amountPledged": 401,
-                "name": "Donna Willis"
-            }, {
-                "amountPledged": 625,
-                "name": "Brian Lema"
-            }, {
-                "amountPledged": 45,
-                "name": "Soraya Groves"
-            }, {
-                "amountPledged": 177,
-                "name": "Joshua Romo"
-            }],
-            "category": "Product and Service Development Projects",
-            "endDate": {
-                "__type": "Date",
-                "iso": "2016-07-08T23:12:00.000Z"
-            },
-            "estimatedDelivery": {
-                "__type": "Date",
-                "iso": "2018-05-11T13:20:00.000Z"
-            },
-            "funded": 2398,
-            "owners": ["James Wolford", "Another person"],
-            "pledged": 7085,
-            "projectDescription": "Dummy Description #1",
-            "projectName": "Dummy Project #1",
-            "objectId": "4fSAnIjIrG",
-            "createdAt": "2015-07-12T20:49:19.456Z",
-            "updatedAt": "2015-07-12T20:49:19.456Z"
+            "categoryId": "some category id",
+            "description": "It's a description",
+            "facebookURL": "www.facebook.com/suffandthings",
+            "kickstarterURL": "www.kickstarter.com/stuffandthings",
+            "location": "Indianapolis, IN",
+            "title": "New one",
+            "twitterURL": "www.twitter.com/stuffandthings",
+            "voteCount": 4,
+            "objectId": "UQHt6AumXC",
+            "createdAt": "2015-07-22T00:02:04.728Z",
+            "updatedAt": "2015-07-27T01:21:48.834Z"
         },
         ...
     ]
@@ -49,18 +30,13 @@ project with GET `/projects/[objectId]`.
 <i>JSON Payload:</i>
 
     {
-        "backers": [{
-            "amountPledged": NUMBER,
-            "name": STRING
-        }, ...],
-        "category": STRING,
-        "endDate": STRING,
-        "estimatedDelivery": STRING,
-        "funded": NUMBER,
-        "owners": STRING ARRAY,
-        "pledged": NUMBER,
-        "projectDescription": STRING,
-        "projectName": STRING,
+        "categoryId": STRING (corresponding to category object),
+        "description": STRING,
+        "facebookURL": STRING,
+        "kickstarterURL": STRING,
+        "location": STRING,
+        "title": STRING,
+        "twitterURL": STRING
     }
 
 <i>Example Response:</i>
@@ -70,36 +46,17 @@ If successfully created or updated: <b>200 OK</b>
 Returns successfully created project:
 
     {
-        "backers": [{
-            "amountPledged": 401,
-            "name": "Donna Willis"
-        }, {
-            "amountPledged": 625,
-            "name": "Brian Lema"
-        }, {
-            "amountPledged": 45,
-            "name": "Soraya Groves"
-        }, {
-            "amountPledged": 177,
-            "name": "Joshua Romo"
-        }],
-        "category": "Product and Service Development Projects",
-        "endDate": {
-            "__type": "Date",
-            "iso": "2016-07-08T23:12:00.000Z"
-        },
-        "estimatedDelivery": {
-            "__type": "Date",
-            "iso": "2018-05-11T13:20:00.000Z"
-        },
-        "funded": 2398,
-        "owners": ["James Wolford", "Another person"],
-        "pledged": 7085,
-        "projectDescription": "Dummy Description #1",
-        "projectName": "Dummy Project #1",
-        "objectId": "4fSAnIjIrG",
-        "createdAt": "2015-07-12T20:49:19.456Z",
-        "updatedAt": "2015-07-12T20:49:19.456Z"
+        "categoryId": "some category id",
+        "description": "It's a description",
+        "facebookURL": "www.facebook.com/suffandthings",
+        "kickstarterURL": "www.kickstarter.com/stuffandthings",
+        "location": "Indianapolis, IN",
+        "title": "New one",
+        "twitterURL": "www.twitter.com/stuffandthings",
+        "voteCount": 4,
+        "objectId": "UQHt6AumXC",
+        "createdAt": "2015-07-22T00:02:04.728Z",
+        "updatedAt": "2015-07-27T01:21:48.834Z"
     }
 
 If failed: <b>Status: 500</b>
@@ -126,36 +83,17 @@ If successfully created or updated: <b>200 OK</b>
 Returns successfully updated project:
 
     {
-        "backers": [{
-            "amountPledged": 401,
-            "name": "Donna Willis"
-        }, {
-            "amountPledged": 625,
-            "name": "Brian Lema"
-        }, {
-            "amountPledged": 45,
-            "name": "Soraya Groves"
-        }, {
-            "amountPledged": 177,
-            "name": "Joshua Romo"
-        }],
-        "category": "Product and Service Development Projects",
-        "endDate": {
-            "__type": "Date",
-            "iso": "2016-07-08T23:12:00.000Z"
-        },
-        "estimatedDelivery": {
-            "__type": "Date",
-            "iso": "2018-05-11T13:20:00.000Z"
-        },
-        "funded": 2398,
-        "owners": ["James Wolford", "Another person"],
-        "pledged": 7085,
-        "projectDescription": "Dummy Description #1",
-        "projectName": "Dummy Project #1",
-        "objectId": "4fSAnIjIrG",
-        "createdAt": "2015-07-12T20:49:19.456Z",
-        "updatedAt": "2015-07-12T20:49:19.456Z"
+        "categoryId": "some category id",
+        "description": "It's a description",
+        "facebookURL": "www.facebook.com/suffandthings",
+        "kickstarterURL": "www.kickstarter.com/stuffandthings",
+        "location": "Indianapolis, IN",
+        "title": "New one",
+        "twitterURL": "www.twitter.com/stuffandthings",
+        "voteCount": 4,
+        "objectId": "UQHt6AumXC",
+        "createdAt": "2015-07-22T00:02:04.728Z",
+        "updatedAt": "2015-07-27T01:21:48.834Z"
     }
 
 If failed: <b>Status: 500</b>
