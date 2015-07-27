@@ -40,8 +40,6 @@ router.post( '/', jsonParser, function( req, res ){
 	var newProject = new ProjectObject();
 	var project = req.body;
 	console.log( project );
-	project.endDate = new Date( project.endDate );
-	project.estimatedDelivery = new Date( project.estimatedDelivery );
 
 	newProject.save( project ).then(
 		function( proj ) {
