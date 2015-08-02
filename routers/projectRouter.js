@@ -43,6 +43,22 @@ router.post( '/', jsonParser, function( req, res ){
 
 	newProject.save( project ).then(
 		function( proj ) {
+			// Update the projectCount on this project's category
+			var query = new Parse.Query("Category");
+			query.equalTo( "objectId", project["categoryId"] );
+
+			query.find().then(
+				function( result ) {
+					// console.log("result[0]['_serverData']['projectCount']: ", result[0]['_serverData']['projectCount']);
+					var update = { "projectCount": (result[0]['_serverData']['projectCount'] + 1) };
+
+					result[0].save( update );
+				}, 
+				function( err ) {
+					// console.log(err);
+				}
+			);
+
 			res.send( proj );
 		},
 		function( err ) {
@@ -69,6 +85,7 @@ router.put( '/:id', jsonParser, function( req, res ){
 			res.status( 500 ).send( err );
 		}
 	);
+
 });
 
 module.exports = router;
