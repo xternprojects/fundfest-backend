@@ -16,6 +16,7 @@ project with GET `/projects/[objectId]`.
             "kickstarterURL": "www.kickstarter.com/stuffandthings",
             "location": "Indianapolis, IN",
             "title": "New one",
+            "owners": ["owner1", "owner2", ...],
             "twitterURL": "www.twitter.com/stuffandthings",
             "voteCount": 4,
             "objectId": "UQHt6AumXC",
@@ -34,6 +35,7 @@ project with GET `/projects/[objectId]`.
         "description": STRING,
         "facebookURL": STRING,
         "kickstarterURL": STRING,
+        "owners": ARRAY OF STRING,
         "location": STRING,
         "title": STRING,
         "twitterURL": STRING
@@ -88,6 +90,7 @@ Returns successfully updated project:
         "facebookURL": "www.facebook.com/suffandthings",
         "kickstarterURL": "www.kickstarter.com/stuffandthings",
         "location": "Indianapolis, IN",
+        "owners": ["owner1", "owner2", ...],
         "title": "New one",
         "twitterURL": "www.twitter.com/stuffandthings",
         "voteCount": 4,
