@@ -1,0 +1,7 @@
+{
+	"categoryID": 			"<will be decided by the server>",
+	"categoryName": 			"<categoryName>",
+	"categoryDescription": 	"<A description of the category>",
+	"picture":					"<A picture to represent the category>",
+	"projectCount":				"<A current total number of projects in this category>"
+}
