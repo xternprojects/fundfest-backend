@@ -16,6 +16,7 @@ var server = http.createServer( app );
 
 // var Project			= require('./controllers/Project');
 var projectRouter 		= require('./routers/projectRouter');
+var eventsRouter 		= require('./routers/eventsRouter');
 
 /// --- SETTING UP APP --- ///
 app.set('port', process.env.PORT);
@@ -30,6 +31,7 @@ app.get('/', function(req, res) {
 });
 
 app.use( '/projects', projectRouter );
+app.use( '/events', eventsRouter );
 
 server.listen(process.env.PORT, function() {
 	console.log('Server running at port: ' + process.env.PORT);
